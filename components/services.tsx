@@ -72,7 +72,7 @@ const services: Service[] = [
     icon: Car,
     title: "Limpieza de Interiores",
     description: "Limpieza profunda del interior para un ambiente impecable y fresco.",
-    price: "$100.000",
+    price: "$80.000",
     duration: "3-4 horas",
     steps: [
       "Desarme completo de butacas",
@@ -91,7 +91,7 @@ const services: Service[] = [
     icon: Cog,
     title: "Limpieza de Motor",
     description: "Desengrase y acondicionamiento del compartimiento del motor.",
-    price: "$35.000",
+    price: "$50.000",
     duration: "1-1.5 hrs",
     steps: [
       "Protección de componentes eléctricos",
@@ -107,7 +107,7 @@ const services: Service[] = [
     icon: Tag,
     title: "Preparación Preventa",
     description: "Dejamos tu vehículo impecable para conseguir el mejor precio de venta.",
-    price: "$200.000",
+    price: "$220.000",
     duration: "6-8 horas",
     steps: [
       "Lavado premium completo",
@@ -141,14 +141,14 @@ const services: Service[] = [
     icon: Gem,
     title: "Tratamiento Cerámico",
     description: "La máxima protección para tu pintura con recubrimiento cerámico profesional.",
-    price: "$300.000",
+    price: "$425.000",
     duration: "1-2 días",
     steps: [
       "Lavado premium completo",
       'Limpieza basica de interior',
       "Preparacion y descontaminacion completa de carroceria",
       "Enmascarado de zonas sensibles",
-      "Pulido completo en 2 pasos",
+      "Pulido completo en 3 pasos",
       "Aplicación de sellador ceramico",
       "Protección con duración de 2 años",
     ],
@@ -175,7 +175,7 @@ const services: Service[] = [
     title: "Restauración de ópticas",
     description:
       "Recuperamos transparencia y brillo en faros opacos o amarillentos, mejorando visibilidad y estética.",
-    price: "$45.000",
+    price: "$50.000",
     duration: "1-2 horas",
     steps: [
       "Enmascarado de zonas sensibles",
@@ -183,7 +183,7 @@ const services: Service[] = [
       "Lijado en progresión para eliminar oxidación y micro-rayas",
       "Aplicacion de polimero liquido para restaurar la transparencia",
       "Acabado uniforme en ambas ópticas",
-      "3 años de proteccion contra rayos UV",
+      "De 1 a 2 años de proteccion contra rayos UV",
     ],
   },
 ]

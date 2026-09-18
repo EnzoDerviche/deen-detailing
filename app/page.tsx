@@ -16,9 +16,11 @@ export default function Home() {
   const localBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "AutoDetailing",
-    name: "Deen Garage",
+    name: "Deen Detailing",
+    description:
+      "Estudio de detailing automotriz en Berazategui, Buenos Aires. Lavado premium, limpieza de interiores, abrillantado, tratamiento acrílico y cerámico.",
     url: siteUrl,
-    telephone: "+54 9 11 2155-5751",
+    telephone: "+54 9 11 7276-3774",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Calle 17 n2878",
@@ -26,7 +28,7 @@ export default function Home() {
       addressRegion: "Buenos Aires",
       addressCountry: "AR",
     },
-    areaServed: ["Berazategui", "Buenos Aires"],
+    areaServed: ["Berazategui", "Hudson", "Ranelagh", "Quilmes", "Buenos Aires"],
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -42,9 +44,9 @@ export default function Home() {
       },
     ],
     sameAs: [
-      "https://instagram.com/deen.garage",
-      "https://tiktok.com/@deen.garage",
-      "https://wa.me/5491121555751",
+      "https://instagram.com/deen.detailing",
+      "https://tiktok.com/@deen.detailing",
+      "https://wa.me/5491172763774",
     ],
   }
 

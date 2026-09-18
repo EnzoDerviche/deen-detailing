@@ -59,7 +59,7 @@ export function Header() {
             className="flex items-center gap-2"
           >
             <span className="font-serif text-xl md:text-2xl font-semibold tracking-tight text-foreground">
-              DEEN<span className="text-primary">GARAGE</span>
+              DEEN<span className="text-primary">DETAILING</span>
             </span>
           </a>
 

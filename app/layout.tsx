@@ -14,18 +14,23 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Deen Garage | Detailing en Berazategui',
-    template: '%s | Deen Garage',
+    default: 'Deen Detailing | Detailing automotriz en Berazategui',
+    template: '%s | Deen Detailing',
   },
   description:
-    'Detailing automotriz en Berazategui, Buenos Aires. Lavado premium, limpieza de interiores, abrillantado, tratamiento acrílico y cerámico.',
+    'Deen Detailing: estudio de detailing automotriz en Berazategui, Buenos Aires. Lavado premium, limpieza de interiores, abrillantado, tratamiento acrílico y cerámico. Reservá tu turno por WhatsApp.',
   keywords: [
+    'deen detailing',
     'detailing berazategui',
+    'detailing automotriz berazategui',
     'lavado premium auto berazategui',
     'tratamiento ceramico berazategui',
+    'tratamiento acrilico auto berazategui',
     'abrillantado autos berazategui',
-    'limpieza de interiores auto',
-    'deen garage',
+    'pulido de autos berazategui',
+    'limpieza de interiores auto berazategui',
+    'detailing quilmes',
+    'detailing hudson',
   ],
   alternates: {
     canonical: '/',
@@ -34,14 +39,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_AR',
     url: '/',
-    siteName: 'Deen Garage',
-    title: 'Deen Garage | Detailing en Berazategui',
+    siteName: 'Deen Detailing',
+    title: 'Deen Detailing | Detailing automotriz en Berazategui',
     description:
-      'Servicios de detailing automotriz en Berazategui, Buenos Aires. Reservá tu turno por WhatsApp.',
+      'Servicios de detailing automotriz en Berazategui, Buenos Aires. Lavado premium, tratamientos cerámicos y más. Reservá tu turno por WhatsApp.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Deen Garage | Detailing en Berazategui',
+    title: 'Deen Detailing | Detailing automotriz en Berazategui',
     description:
       'Lavado premium, limpieza de interiores, abrillantado y tratamientos de pintura.',
   },

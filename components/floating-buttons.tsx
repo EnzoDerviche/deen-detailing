@@ -38,13 +38,14 @@ const socialButtons = [
 export function FloatingButtons() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-4">
-      {socialButtons.map((social) =>
+      {socialButtons.map((social, i) =>
         social.name === "WhatsApp" ? (
           <button
             key={social.name}
             type="button"
             onClick={openWhatsApp}
-            className={`flex items-center justify-center w-14 h-14 rounded-full text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl ${social.bgColor} ${social.hoverColor}`}
+            style={{ animationDelay: `${i * 120}ms` }}
+            className={`pulse-ring animate-in fade-in zoom-in duration-500 fill-mode-both flex items-center justify-center w-14 h-14 rounded-full text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl ${social.bgColor} ${social.hoverColor}`}
             aria-label={social.name}
           >
             <social.icon />
@@ -55,7 +56,8 @@ export function FloatingButtons() {
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center justify-center w-14 h-14 rounded-full text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl ${social.bgColor} ${social.hoverColor}`}
+            style={{ animationDelay: `${i * 120}ms` }}
+            className={`animate-in fade-in zoom-in duration-500 fill-mode-both flex items-center justify-center w-14 h-14 rounded-full text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl ${social.bgColor} ${social.hoverColor}`}
             aria-label={social.name}
           >
             <social.icon />

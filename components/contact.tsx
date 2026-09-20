@@ -1,7 +1,8 @@
 "use client"
 
-import { Instagram, Phone, MapPin, Clock } from "lucide-react"
+import { Instagram, Phone, MapPin, Clock, MessageCircle, ArrowUpRight } from "lucide-react"
 import { openWhatsApp } from "@/hooks/send-whatsapp"
+import { Reveal } from "@/components/reveal"
 
 const contactInfo = [
   {
@@ -9,7 +10,7 @@ const contactInfo = [
     title: "WhatsApp",
     value: "+54 9 11 7276 3774",
     href: "https://wa.me/5491172763774",
-    description: "Lun - Vie: 18:00 - 22:00 | Sáb - Dom: 9:00 - 19:00",
+    description: "Lun - Sáb: 9:00 - 19:00 | Dom: 9:00 - 14:00",
   },
   {
     icon: Instagram,
@@ -21,16 +22,16 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Ubicación",
-    value: "Calle 17 n2878",
-    href: "https://maps.app.goo.gl/2J3xmfM2QWrUihtb7",
-    description: "Berazategui Oeste, Buenos Aires",
+    value: "Av. Valentín Vergara 1470",
+    href: "https://www.google.com/maps/search/?api=1&query=Av.+Valent%C3%ADn+Vergara+1470+Berazategui",
+    description: "Berazategui, Buenos Aires",
   },
   {
     icon: Clock,
     title: "Horarios",
-    value: "Lun - Vie | Sáb - Dom",
+    value: "Lun - Sáb | Domingo",
     href: null,
-    description: "18:00 - 22:00 | 9:00 - 19:00",
+    description: "9:00 - 19:00 | 9:00 - 14:00",
   },
 ]
 
@@ -72,131 +73,164 @@ const socialLinks = [
 
 export function Contact() {
   return (
-    <section id="contacto" className="py-20 md:py-28">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <p className="text-primary font-medium tracking-widest uppercase mb-3 text-sm">
+    <section id="contacto" className="relative py-20 md:py-28 overflow-hidden">
+      {/* subtle aurora accent (palette only) */}
+      <div className="aurora-blob animate-aurora bg-primary/15 w-[34rem] h-[34rem] -top-40 right-0 pointer-events-none" />
+
+      <div className="container mx-auto px-4 relative">
+        <div className="text-center mb-14">
+          <Reveal variant="down" as="p" className="text-primary font-medium tracking-[0.25em] uppercase mb-4 text-xs">
             Contacto
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-4 text-balance">
+          </Reveal>
+          <Reveal as="h2" delay={100} className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-5 text-balance">
             Reservá tu turno
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Contactanos para agendar tu cita o resolver cualquier consulta. 
-            Estamos para ayudarte.
-          </p>
+          </Reveal>
+          <Reveal delay={160} className="mx-auto mb-5 h-px w-16 bg-gradient-to-r from-transparent via-primary to-transparent" />
+          <Reveal as="p" delay={200} className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Contactanos para agendar tu cita o resolver cualquier consulta. Estamos para ayudarte.
+          </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {contactInfo.map((item) => (
-                <div
-                  key={item.title}
-                  className="p-5 rounded-lg bg-card border border-border hover:border-primary/50 transition-colors"
-                >
-                  <div className="flex items-start gap-3">
-                    <div
-                      className={`p-2 rounded-lg ${
-                        item.title === "WhatsApp"
-                          ? "bg-[#25D366]/15"
-                          : item.title === "Instagram"
-                            ? "bg-[#E1306C]/15"
-                            : "bg-primary/10"
-                      }`}
-                    >
-                      <item.icon
-                        className={`h-5 w-5 ${
-                          item.title === "WhatsApp"
-                            ? "text-[#25D366]"
-                            : item.title === "Instagram"
-                              ? "text-[#E1306C]"
-                              : "text-primary"
-                        }`}
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-foreground text-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
+          {/* Contact panel */}
+          <Reveal
+            variant="left"
+            className="relative flex flex-col rounded-2xl border border-border bg-card/70 backdrop-blur-sm p-7 md:p-9 overflow-hidden"
+          >
+            {/* top hairline accent */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+
+            {/* Primary CTA */}
+            <button
+              type="button"
+              onClick={openWhatsApp}
+              className="shine group flex items-center justify-between gap-3 w-full rounded-xl bg-primary text-primary-foreground px-5 py-4 font-medium transition-transform duration-300 hover:scale-[1.02]"
+            >
+              <span className="flex items-center gap-3">
+                <MessageCircle className="h-5 w-5" />
+                Reservar por WhatsApp
+              </span>
+              <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </button>
+            <p className="mt-3 text-xs text-muted-foreground text-center">
+              Respondemos a la brevedad en nuestro horario de atención.
+            </p>
+
+            {/* Info list */}
+            <ul className="mt-8 divide-y divide-border/70">
+              {contactInfo.map((item) => {
+                const Row = (
+                  <>
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-secondary/40 text-primary transition-colors duration-300 group-hover/row:border-primary/50 group-hover/row:bg-primary/10">
+                      <item.icon className="h-5 w-5" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[0.7rem] font-medium uppercase tracking-widest text-muted-foreground">
                         {item.title}
-                      </h3>
-                      {item.href ? (
-                        item.title === "WhatsApp" ? (
-                          <button
-                            type="button"
-                            onClick={openWhatsApp}
-                            className="text-primary hover:underline text-sm"
-                          >
-                            {item.value}
-                          </button>
-                        ) : (
-                          <a
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary hover:underline text-sm"
-                          >
-                            {item.value}
-                          </a>
-                        )
-                      ) : (
-                        <p className="text-foreground text-sm">{item.value}</p>
-                      )}
-                      <p className="text-xs text-muted-foreground mt-1">
+                      </span>
+                      <span className="block truncate font-medium text-foreground">
+                        {item.value}
+                      </span>
+                      <span className="block text-xs text-muted-foreground mt-0.5">
                         {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+                      </span>
+                    </span>
+                    {item.href && (
+                      <ArrowUpRight className="ml-auto h-4 w-4 shrink-0 text-muted-foreground transition-all duration-300 group-hover/row:text-primary group-hover/row:translate-x-0.5 group-hover/row:-translate-y-0.5" />
+                    )}
+                  </>
+                )
+                const rowClass =
+                  "group/row flex items-center gap-4 py-4 text-left w-full transition-colors"
+                return (
+                  <li key={item.title}>
+                    {item.href ? (
+                      item.title === "WhatsApp" ? (
+                        <button type="button" onClick={openWhatsApp} className={rowClass}>
+                          {Row}
+                        </button>
+                      ) : (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={rowClass}
+                        >
+                          {Row}
+                        </a>
+                      )
+                    ) : (
+                      <div className={rowClass}>{Row}</div>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
 
             {/* Social Links */}
-            <div className="p-5 rounded-lg bg-card border border-border">
-              <h3 className="font-medium text-foreground mb-4">Seguinos en redes</h3>
-              <div className="flex gap-3">
-                {socialLinks.map((social) =>
-                  social.name === "WhatsApp" ? (
-                    <button
-                      key={social.name}
-                      type="button"
-                      onClick={openWhatsApp}
-                      className={`p-3 rounded-lg text-white transition-colors ${social.bgColor} ${social.hoverColor}`}
-                      aria-label={social.name}
-                    >
-                      <social.icon />
-                    </button>
-                  ) : (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`p-3 rounded-lg text-white transition-colors ${social.bgColor} ${social.hoverColor}`}
-                      aria-label={social.name}
-                    >
-                      <social.icon />
-                    </a>
-                  ),
-                )}
+            <div className="mt-auto pt-8">
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-sm text-muted-foreground">Seguinos en redes</span>
+                <div className="flex gap-2.5">
+                  {socialLinks.map((social) =>
+                    social.name === "WhatsApp" ? (
+                      <button
+                        key={social.name}
+                        type="button"
+                        onClick={openWhatsApp}
+                        className={`flex h-10 w-10 items-center justify-center rounded-full text-white ring-1 ring-inset ring-white/10 transition-all duration-300 hover:scale-110 hover:-translate-y-1 ${social.bgColor} ${social.hoverColor}`}
+                        aria-label={social.name}
+                      >
+                        <social.icon />
+                      </button>
+                    ) : (
+                      <a
+                        key={social.name}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex h-10 w-10 items-center justify-center rounded-full text-white ring-1 ring-inset ring-white/10 transition-all duration-300 hover:scale-110 hover:-translate-y-1 ${social.bgColor} ${social.hoverColor}`}
+                        aria-label={social.name}
+                      >
+                        <social.icon />
+                      </a>
+                    ),
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Map */}
-          <div className="rounded-lg overflow-hidden border border-border h-[400px] lg:h-auto">
+          <Reveal
+            variant="right"
+            delay={150}
+            className="group relative min-h-[420px] lg:min-h-0 rounded-2xl overflow-hidden border border-border shadow-2xl shadow-background/50"
+          >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3277.1915685137747!2d-58.23109692352402!3d-34.77595236661598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a329b2286b08b9%3A0x8e937f82d088512a!2sDeen%20Garage%20Detailing!5e0!3m2!1ses-419!2sar!4v1775583993833!5m2!1ses-419!2sar"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1638.6459876609206!2d-58.230272914359226!3d-34.77342428753269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a328d4a58498f7%3A0x6baa570747e41431!2sAv.%20Valent%C3%ADn%20Vergara%201470%2C%20B1884%20Berazategui%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1789863177562!5m2!1ses-419!2sar"
               width="100%"
               height="100%"
-              style={{ border: 0, minHeight: "400px" }}
+              style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Ubicación del taller"
-              className="opacity-100"
+              className="absolute inset-0 h-full w-full"
             />
-          </div>
+            {/* elegant frame + floating address chip */}
+            <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/5 transition-all duration-500 group-hover:ring-primary/30" />
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Av.+Valent%C3%ADn+Vergara+1470+Berazategui"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-4 left-4 z-10 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-sm font-medium text-foreground backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:text-primary"
+            >
+              <MapPin className="h-4 w-4 text-primary" />
+              Av. Valentín Vergara 1470, Berazategui
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </Reveal>
         </div>
       </div>
     </section>

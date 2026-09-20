@@ -14,10 +14,10 @@ import {
   Sun,
   Lightbulb,
   ChevronDown,
-  ChevronUp,
   Check,
 } from "lucide-react"
 import { openWhatsApp } from "@/hooks/send-whatsapp"
+import { Reveal } from "@/components/reveal"
 
 interface Service {
   id: string
@@ -192,11 +192,13 @@ function ServiceCard({ service }: { service: Service }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <Card className="bg-card border-border hover:border-primary/50 transition-colors duration-300">
-      <CardHeader className="pb-2">
+    <Card className="group card-lift relative overflow-hidden bg-card border-border h-full">
+      {/* gradient glow that fades in on hover */}
+      <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-b from-primary/[0.07] to-transparent" />
+      <CardHeader className="pb-2 relative">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10">
+            <div className="p-2 rounded-lg bg-primary/10 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
               <service.icon className="h-6 w-6 text-primary" />
             </div>
             <div>
@@ -207,11 +209,13 @@ function ServiceCard({ service }: { service: Service }) {
             </div>
           </div>
           <div className="text-right">
-            <span className="text-xl font-bold text-primary">{service.price}</span>
+            <span className="text-xl font-bold text-primary transition-transform duration-300 group-hover:scale-110 inline-block">
+              {service.price}
+            </span>
           </div>
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="relative">
         <p className="text-sm text-muted-foreground mb-4">{service.description}</p>
 
         <Button
@@ -219,29 +223,39 @@ function ServiceCard({ service }: { service: Service }) {
           size="sm"
           className="w-full justify-between text-muted-foreground hover:text-foreground"
           onClick={() => setIsExpanded(!isExpanded)}
+          aria-expanded={isExpanded}
         >
           <span>Ver proceso paso a paso</span>
-          {isExpanded ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
+          <ChevronDown
+            className={`h-4 w-4 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+          />
         </Button>
 
-        {isExpanded && (
-          <div className="mt-4 pt-4 border-t border-border">
-            <ul className="space-y-2">
-              {service.steps.map((step, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm">
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                    <Check className="h-3 w-3 text-primary" />
-                  </span>
-                  <span className="text-muted-foreground">{step}</span>
-                </li>
-              ))}
-            </ul>
+        {/* grid-rows trick for a smooth expand/collapse */}
+        <div
+          className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            isExpanded ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <div className="pt-4 border-t border-border">
+              <ul className="space-y-2">
+                {service.steps.map((step, index) => (
+                  <li
+                    key={index}
+                    className="flex items-start gap-2 text-sm"
+                    style={{ transitionDelay: `${index * 40}ms` }}
+                  >
+                    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                      <Check className="h-3 w-3 text-primary" />
+                    </span>
+                    <span className="text-muted-foreground">{step}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        )}
+        </div>
       </CardContent>
     </Card>
   )
@@ -252,36 +266,38 @@ export function Services() {
     <section id="servicios" className="py-20 md:py-28 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <p className="text-primary font-medium tracking-widest uppercase mb-3 text-sm">
+          <Reveal variant="down" as="p" className="text-primary font-medium tracking-widest uppercase mb-3 text-sm">
             Nuestros Servicios
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-4 text-balance">
+          </Reveal>
+          <Reveal as="h2" delay={100} className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-4 text-balance">
             Cuidado profesional para tu vehículo
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Seleccioná el servicio que mejor se adapte a las necesidades de tu auto. 
+          </Reveal>
+          <Reveal as="p" delay={200} className="text-muted-foreground max-w-2xl mx-auto">
+            Seleccioná el servicio que mejor se adapte a las necesidades de tu auto.
             Hacé clic en cada uno para ver el proceso detallado.
-          </p>
+          </Reveal>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+          {services.map((service, i) => (
+            <Reveal key={service.id} variant="up" delay={(i % 4) * 90} className="h-full">
+              <ServiceCard service={service} />
+            </Reveal>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <Reveal className="mt-12 text-center">
           <p className="text-sm text-muted-foreground mb-4">
             ¿No encontrás lo que buscás? Contactanos para un presupuesto personalizado.
           </p>
           <Button
             type="button"
             onClick={openWhatsApp}
-            className="bg-primary text-primary-foreground hover:bg-primary/90"
+            className="shine bg-primary text-primary-foreground hover:bg-primary/90 transition-transform duration-300 hover:scale-[1.04]"
           >
             Consultar por WhatsApp
           </Button>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

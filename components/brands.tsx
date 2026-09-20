@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { Reveal } from "@/components/reveal"
 
 const brands: { name: string; logo: string }[] = [
   { name: "Marca 1", logo: "/brands/menzerna.png" },
@@ -10,39 +11,45 @@ const brands: { name: string; logo: string }[] = [
 ]
 
 export function Brands() {
+  // duplicated once for a seamless marquee loop
+  const track = [...brands, ...brands]
+
   return (
-    <section id="marcas" className="py-20 md:py-24 border-y border-border bg-secondary/20">
+    <section id="marcas" className="py-20 md:py-24 border-y border-border bg-secondary/20 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 max-w-2xl mx-auto">
-          <p className="text-primary font-medium tracking-widest uppercase mb-3 text-sm">
+          <Reveal variant="down" as="p" className="text-primary font-medium tracking-widest uppercase mb-3 text-sm">
             Marcas
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4 text-balance">
+          </Reveal>
+          <Reveal as="h2" delay={100} className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4 text-balance">
             Productos que utilizamos
-          </h2>
-          <p className="text-muted-foreground text-sm md:text-base">
+          </Reveal>
+          <Reveal as="p" delay={200} className="text-muted-foreground text-sm md:text-base">
             Trabajamos con marcas líderes en detailing para garantizar el mejor resultado en cada
             servicio.
-          </p>
+          </Reveal>
         </div>
+      </div>
 
-        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-10 items-center justify-items-center max-w-5xl mx-auto">
-          {brands.map((brand) => (
+      <Reveal variant="fade" className="marquee-mask w-full">
+        <ul className="marquee-track gap-6 md:gap-8" aria-label="Marcas que utilizamos">
+          {track.map((brand, i) => (
             <li
-              key={brand.name}
-              className="w-full flex items-center justify-center px-4 py-6 rounded-lg bg-card/50 border border-border/60 hover:border-primary/30 transition-colors"
+              key={`${brand.name}-${i}`}
+              aria-hidden={i >= brands.length}
+              className="group shrink-0 w-40 md:w-48 flex items-center justify-center px-4 py-6 rounded-lg bg-card/50 border border-border/60 hover:border-primary/40 transition-colors duration-300"
             >
               <Image
                 src={brand.logo}
                 alt={brand.name}
                 width={200}
                 height={48}
-                className="h-10 md:h-12 w-auto max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
+                className="h-10 md:h-12 w-auto max-w-full object-contain opacity-70 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105"
               />
             </li>
           ))}
         </ul>
-      </div>
+      </Reveal>
     </section>
   )
 }

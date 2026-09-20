@@ -125,5 +125,243 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+}
+
+/* ---------- Scroll reveal (IntersectionObserver-driven) ---------- */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal[data-reveal="up"] {
+  transform: translateY(48px);
+}
+.reveal[data-reveal="down"] {
+  transform: translateY(-48px);
+}
+.reveal[data-reveal="left"] {
+  transform: translateX(-56px);
+}
+.reveal[data-reveal="right"] {
+  transform: translateX(56px);
+}
+.reveal[data-reveal="scale"] {
+  transform: scale(0.9);
+}
+.reveal[data-reveal="fade"] {
+  transform: none;
+}
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -22px, 0);
+  }
+}
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(6%, 3%, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-3%, 6%, 0) scale(0.96);
+  }
+  100% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+}
+@keyframes text-sheen {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 16px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+/* ---------- Utilities ---------- */
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+.animate-aurora {
+  animation: aurora-drift 24s ease-in-out infinite;
+}
+.animate-bob {
+  animation: bob 1.8s ease-in-out infinite;
+}
+.pulse-ring {
+  animation: pulse-ring 2.4s cubic-bezier(0.66, 0, 0, 1) infinite;
+}
+
+/* animated gradient headline — stays within palette (foreground → primary) */
+.text-sheen {
+  background: linear-gradient(
+    100deg,
+    var(--foreground) 0%,
+    var(--primary) 30%,
+    var(--foreground) 55%,
+    var(--primary) 80%,
+    var(--foreground) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-sheen 6s linear infinite;
+}
+
+/* soft aurora blobs built from palette tokens */
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* card lift + subtle glow on hover */
+.card-lift {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s ease;
+  will-change: transform;
+}
+.card-lift:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 24px 50px -20px color-mix(in oklab, var(--primary) 30%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--primary) 30%, transparent);
+}
+
+/* light sweep across an element on hover */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    color-mix(in oklab, var(--foreground) 22%, transparent) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+.shine:hover::after {
+  transform: translateX(120%);
+}
+
+/* animated underline for nav links */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* marquee track */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+.marquee-mask:hover .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-float-slow,
+  .animate-aurora,
+  .animate-bob,
+  .pulse-ring,
+  .text-sheen,
+  .marquee-track {
+    animation: none !important;
+  }
+  .text-sheen {
+    color: var(--foreground);
   }
 }

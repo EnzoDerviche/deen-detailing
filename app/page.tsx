@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { Services } from "@/components/services"
+import { Results } from "@/components/results"
 import { Brands } from "@/components/brands"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
@@ -23,7 +24,7 @@ export default function Home() {
     telephone: "+54 9 11 7276-3774",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Calle 17 n2878",
+      streetAddress: "Av. Valentín Vergara 1470",
       addressLocality: "Berazategui",
       addressRegion: "Buenos Aires",
       addressCountry: "AR",
@@ -32,15 +33,15 @@ export default function Home() {
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "18:00",
-        closes: "22:00",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "09:00",
+        closes: "19:00",
       },
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Saturday", "Sunday"],
+        dayOfWeek: ["Sunday"],
         opens: "09:00",
-        closes: "19:00",
+        closes: "14:00",
       },
     ],
     sameAs: [
@@ -59,6 +60,7 @@ export default function Home() {
       <Header />
       <Hero />
       <Services />
+      <Results />
       <Brands />
       <Contact />
       <Footer />

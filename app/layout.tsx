@@ -43,12 +43,21 @@ export const metadata: Metadata = {
     title: 'Deen Detailing | Detailing automotriz en Berazategui',
     description:
       'Servicios de detailing automotriz en Berazategui, Buenos Aires. Lavado premium, tratamientos cerámicos y más. Reservá tu turno por WhatsApp.',
+    images: [
+      {
+        url: '/deen-logo.png',
+        width: 1080,
+        height: 1080,
+        alt: 'Deen Detailing',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Deen Detailing | Detailing automotriz en Berazategui',
     description:
       'Lavado premium, limpieza de interiores, abrillantado y tratamientos de pintura.',
+    images: ['/deen-logo.png'],
   },
   robots: {
     index: true,
@@ -63,21 +72,8 @@ export const metadata: Metadata = {
   },
   category: 'automotive',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/deen-logo.png',
+    apple: '/deen-logo.png',
   },
 }
 

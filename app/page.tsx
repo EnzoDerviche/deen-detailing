@@ -19,7 +19,7 @@ export default function Home() {
     "@type": "AutoDetailing",
     name: "Deen Detailing",
     description:
-      "Estudio de detailing automotriz en Berazategui, Buenos Aires. Lavado premium, limpieza de interiores, abrillantado, tratamiento acrílico y cerámico.",
+      "Estudio de detailing automotriz en Berazategui, Buenos Aires. Lavado premium, limpieza de interiores, abrillantado, tratamiento acrílico y cerámico, y colocación de polarizados (convencional, nanocarbono, nanocerámico y antivandálico).",
     url: siteUrl,
     telephone: "+54 9 11 7276-3774",
     address: {
@@ -49,6 +49,25 @@ export default function Home() {
       "https://tiktok.com/@deen.detailing",
       "https://wa.me/5491172763774",
     ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Servicios de detailing y polarizados",
+      itemListElement: [
+        "Lavado premium",
+        "Limpieza de interiores",
+        "Abrillantado",
+        "Tratamiento acrílico",
+        "Tratamiento cerámico",
+        "Polarizado convencional",
+        "Polarizado nanocarbono",
+        "Polarizado nanocerámico",
+        "Polarizado antivandálico",
+        "Restauración de ópticas",
+      ].map((name) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name },
+      })),
+    },
   }
 
   return (

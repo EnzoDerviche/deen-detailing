@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: '%s | Deen Detailing',
   },
   description:
-    'Deen Detailing: estudio de detailing automotriz en Berazategui, Buenos Aires. Lavado premium, limpieza de interiores, abrillantado, tratamiento acrílico y cerámico. Reservá tu turno por WhatsApp.',
+    'Deen Detailing: estudio de detailing automotriz en Berazategui, Buenos Aires. Lavado premium, limpieza de interiores, abrillantado, tratamiento acrílico y cerámico, y colocación de polarizados. Reservá tu turno por WhatsApp.',
   keywords: [
     'deen detailing',
     'detailing berazategui',
@@ -29,6 +29,13 @@ export const metadata: Metadata = {
     'abrillantado autos berazategui',
     'pulido de autos berazategui',
     'limpieza de interiores auto berazategui',
+    'polarizados berazategui',
+    'polarizado de autos berazategui',
+    'colocacion de polarizados berazategui',
+    'polarizado nanoceramico',
+    'polarizado antivandalico',
+    'polarizado nanocarbono',
+    'laminas de seguridad para autos',
     'detailing quilmes',
     'detailing hudson',
   ],
@@ -42,7 +49,7 @@ export const metadata: Metadata = {
     siteName: 'Deen Detailing',
     title: 'Deen Detailing | Detailing automotriz en Berazategui',
     description:
-      'Servicios de detailing automotriz en Berazategui, Buenos Aires. Lavado premium, tratamientos cerámicos y más. Reservá tu turno por WhatsApp.',
+      'Servicios de detailing automotriz en Berazategui, Buenos Aires. Lavado premium, tratamientos cerámicos, polarizados y más. Reservá tu turno por WhatsApp.',
     images: [
       {
         url: '/deen-logo.png',
@@ -56,7 +63,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Deen Detailing | Detailing automotriz en Berazategui',
     description:
-      'Lavado premium, limpieza de interiores, abrillantado y tratamientos de pintura.',
+      'Lavado premium, limpieza de interiores, abrillantado, tratamientos de pintura y polarizados.',
     images: ['/deen-logo.png'],
   },
   robots: {

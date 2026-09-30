@@ -17,6 +17,7 @@ import {
   SprayCan,
   Wind,
   Disc3,
+  Blinds,
   ChevronDown,
   Check,
 } from "lucide-react"
@@ -254,6 +255,58 @@ const services: Service[] = [
     ],
     duration: "1.5 horas",
   },
+  {
+    id: "polarizado-convencional",
+    icon: Blinds,
+    title: "Convencional 3M / Oracal",
+    description:
+      "Privacidad, reducción de brillo y parte del calor. Ideal si buscás una opción económica.",
+    prices: [{ value: "$60.000" }],
+    duration: "Colocación completa",
+  },
+  {
+    id: "polarizado-nanocarbono",
+    icon: Blinds,
+    title: "Nanocarbono",
+    description:
+      "Excelente rechazo del calor y rayos UV, gran claridad desde el interior y una terminación premium.",
+    prices: [{ value: "$80.000" }],
+    duration: "Colocación completa",
+  },
+  {
+    id: "polarizado-nanoceramico",
+    icon: Blinds,
+    title: "Nanocerámico",
+    description:
+      "Mayor rechazo del calor, excelente visibilidad y mayor durabilidad.",
+    prices: [{ value: "$100.000" }],
+    duration: "Colocación completa",
+  },
+  {
+    id: "polarizado-antivandalico",
+    icon: Blinds,
+    title: "Antivandálico",
+    description:
+      "Mayor espesor y resistencia. Ayuda a mantener el vidrio unido ante impactos y brinda un extra de seguridad.",
+    prices: [{ value: "$200.000" }],
+    duration: "Colocación completa",
+  },
+  {
+    id: "despolarizado",
+    icon: Blinds,
+    title: "Despolarizado + descontaminado",
+    description: "Quita el polarizado anterior y descontamina los vidrios.",
+    prices: [{ value: "$20.000" }],
+    duration: "1 hora",
+  },
+  {
+    id: "polarizado-parabrisas",
+    icon: Blinds,
+    title: "Parabrisas (cualquier lámina)",
+    description: "Colocación de lámina en parabrisas.",
+    prices: [{ value: "$50.000" }],
+    duration: "Colocación completa",
+  },
 ]
 
 function ServiceCard({ service }: { service: Service }) {
@@ -386,6 +439,20 @@ const sections = [
       "pasarruedas-llantas",
     ],
   },
+  {
+    id: "polarizados",
+    title: "Polarizados",
+    icon: Blinds,
+    note: "3 años de garantía en la colocación.",
+    ids: [
+      "polarizado-convencional",
+      "polarizado-nanocarbono",
+      "polarizado-nanoceramico",
+      "polarizado-antivandalico",
+      "despolarizado",
+      "polarizado-parabrisas",
+    ],
+  },
 ]
 
 export function Services() {
@@ -417,9 +484,14 @@ export function Services() {
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-card text-primary">
                     <section.icon className="h-5 w-5" />
                   </span>
-                  <h3 className="font-serif text-2xl md:text-3xl font-semibold text-foreground">
-                    {section.title}
-                  </h3>
+                  <div>
+                    <h3 className="font-serif text-2xl md:text-3xl font-semibold text-foreground">
+                      {section.title}
+                    </h3>
+                    {"note" in section && section.note && (
+                      <p className="text-xs text-muted-foreground mt-1">{section.note}</p>
+                    )}
+                  </div>
                   <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
                 </Reveal>
 
